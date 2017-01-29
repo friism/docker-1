@@ -161,8 +161,9 @@ SHELL ["powershell", "-command"]
 # Environment variable notes:
 #  - GO_VERSION must be consistent with 'Dockerfile' used by Linux.
 #  - FROM_DOCKERFILE is used for detection of building within a container.
-ENV GO_VERSION=1.7.4 `
+ENV GO_VERSION=1.8rc3 `
     GIT_VERSION=2.11.0 `
+    GIT_PATCH_VERSION=3 `
     GOPATH=C:\go `
     FROM_DOCKERFILE=1
 
@@ -204,7 +205,7 @@ RUN `
   setx /M PATH $('C:\git\bin;C:\git\usr\bin;'+$Env:PATH+';C:\gcc\bin;C:\go\bin'); `
   `
   Write-Host INFO: Downloading git...; `
-  $location='https://github.com/git-for-windows/git/releases/download/v'+$env:GIT_VERSION+'.windows.1/PortableGit-'+$env:GIT_VERSION+'-64-bit.7z.exe'; `
+  $location='https://github.com/git-for-windows/git/releases/download/v'+$env:GIT_VERSION+'.windows.'+$env:GIT_PATCH_VERSION+'/PortableGit-'+$env:GIT_VERSION+'.'+$env:GIT_PATCH_VERSION+'-64-bit.7z.exe'; `
   Download-File $location C:\gitsetup.7z.exe; `
   `
   Write-Host INFO: Downloading go...; `
